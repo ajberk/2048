@@ -3,6 +3,4 @@
     window.TFE = {};
   }
 
-
-  //GOT OURSELVES A NAMESPACE
 })
