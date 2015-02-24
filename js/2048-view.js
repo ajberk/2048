@@ -23,7 +23,8 @@
       for (var j = 0; j < 4; j++) {
         var $square = $("<div>");
         $square.addClass("square")
-        $square.data("pos", [i,j]);
+        $square.data("data-pos", [i,j]);
+        debugger
         $container.append($square)
       }
     }
@@ -41,7 +42,7 @@
   }
 
   View.prototype.showPiece = function(pos) {
-    $square = this.$el.data(pos);
+    var $square = $("div.square")
     var $piece = $("<div>");
     $piece.addClass("piece");
     $square.append($piece);
