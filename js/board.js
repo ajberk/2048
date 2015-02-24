@@ -47,6 +47,11 @@
     this.grid[piece2pos[1]][piece2pos[0]] = new TFE.Piece();
   };
 
+  Board.prototype.newPiece = function() {
+    var newpiecepos = this.randEmptyPos();
+    this.grid[newpiecepos[1]][newpiecepos[0]] = new TFE.Piece();
+  };
+
   Board.prototype.move = function(key_dir) {
     alert("Arrow key was pressed!")
   };
