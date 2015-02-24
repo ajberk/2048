@@ -13,7 +13,24 @@
 
   View.prototype.bindEvents = function() {
     // click handlers and stuff
+    $(window).on("keydown", this.handleKeyEvent.bind(this));
   };
+
+  View.KEYS = {
+    38: "N",
+    39: "E",
+    40: "S",
+    37: "W"
+  };
+
+  View.prototype.handleKeyEvent = function (event) {
+    if (View.KEYS[event.keyCode]) {
+      alert("Arrow key was pressed!")
+    } else {
+      // some other key was pressed; ignore.
+    }
+  };
+
 
   View.prototype.setupBoard = function() {
     var $container = $("<div>");
@@ -38,7 +55,7 @@
         }
       }
     }
-  }
+  };
 
   View.prototype.showPiece = function(pos) {
     $square = $('.square[data-pos="'+pos+'"]')
