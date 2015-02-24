@@ -25,7 +25,7 @@
 
   View.prototype.handleKeyEvent = function (event) {
     if (View.KEYS[event.keyCode]) {
-      alert("Arrow key was pressed!")
+      this.game.board.move(View.KEYS[event.keyCode])
     } else {
       // some other key was pressed; ignore.
     }
@@ -63,14 +63,15 @@
     $piece.addClass("piece");
     $piece.append(grid[pos[0]][pos[1]].val)
     $square.append($piece);
-    debugger
   }
-
-
-
-
-
-
-
-
 })();
+
+
+
+
+
+
+
+
+
+//
