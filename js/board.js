@@ -39,10 +39,9 @@
   Board.prototype.startGame = function() {
     var piece1pos = this.randEmptyPos();
     var piece2pos = this.randEmptyPos();
-    var x =  new TFE.Piece();
-    debugger
     this.grid[piece1pos[1]][piece1pos[0]] = new TFE.Piece();
     this.grid[piece2pos[1]][piece2pos[0]] = new TFE.Piece();
+    debugger
   };
 
 })();
