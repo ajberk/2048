@@ -51,17 +51,19 @@
     for (var i = 0; i < 4; i++) {
       for (var j = 0; j < 4; j++) {
         if (grid[i][j] !== null)    {
-          this.showPiece([i,j])
+          this.showPiece([i,j], grid)
         }
       }
     }
   };
 
-  View.prototype.showPiece = function(pos) {
+  View.prototype.showPiece = function(pos, grid) {
     $square = $('.square[data-pos="'+pos+'"]')
     var $piece = $("<div>");
     $piece.addClass("piece");
+    $piece.append(grid[pos[0]][pos[1]].val)
     $square.append($piece);
+    debugger
   }
 
 
