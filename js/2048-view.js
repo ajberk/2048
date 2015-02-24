@@ -41,7 +41,6 @@
   }
 
   View.prototype.showPiece = function(pos) {
-    debugger
     $square = $('.square[data-pos="'+pos+'"]')
     var $piece = $("<div>");
     $piece.addClass("piece");
