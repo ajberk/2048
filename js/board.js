@@ -29,16 +29,20 @@
   Board.prototype.randEmptyPos = function() {
     var xpos = Math.floor(Math.random() * 4);
     var ypos = Math.floor(Math.random() * 4);
-    // while (this.isEmpty([xpos, ypos])) {
-    //   var xpos = Math.floor(Math.random() * 4);
-    //   var ypos = Math.floor(Math.random() * 4);
-    // }
+    while (!this.isEmpty([xpos, ypos])) {
+      xpos = Math.floor(Math.random() * 4);
+      ypos = Math.floor(Math.random() * 4);
+    }
     return [xpos, ypos];
   };
+
 
   Board.prototype.startGame = function() {
     var piece1pos = this.randEmptyPos();
     var piece2pos = this.randEmptyPos();
+    while ((piece1pos[0] == piece2pos[0]) && piece1pos[1] == piece2pos[1]) {
+      piece2pos = this.randEmptyPos();
+    }
     this.grid[piece1pos[1]][piece1pos[0]] = new TFE.Piece();
     this.grid[piece2pos[1]][piece2pos[0]] = new TFE.Piece();
   };
