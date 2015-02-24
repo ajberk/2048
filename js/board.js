@@ -41,7 +41,6 @@
     var piece2pos = this.randEmptyPos();
     this.grid[piece1pos[1]][piece1pos[0]] = new TFE.Piece();
     this.grid[piece2pos[1]][piece2pos[0]] = new TFE.Piece();
-    debugger
   };
 
 })();

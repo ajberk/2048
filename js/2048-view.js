@@ -8,6 +8,7 @@
     this.$el = $el;
     this.setupBoard();
     this.bindEvents();
+    this.showPieces(this.game.board.grid)
   };
 
   View.prototype.bindEvents = function() {
@@ -28,4 +29,29 @@
     }
     this.$el.append($container)
   };
+
+  View.prototype.showPieces = function(grid) {
+    for (var i = 0; i < 4; i++) {
+      for (var j = 0; j < 4; j++) {
+        if (grid[i][j] !== null)    {
+          this.showPiece([i,j])
+        }
+      }
+    }
+  }
+
+  View.prototype.showPiece = function(pos) {
+    $square = this.$el.data(pos);
+    var $piece = $("<div>");
+    $piece.addClass("piece");
+    $square.append($piece);
+  }
+
+
+
+
+
+
+
+
 })();
