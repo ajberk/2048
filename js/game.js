@@ -10,16 +10,16 @@
   Game.prototype.move = function(key_dir) {
     switch (key_dir) {
       case "N":
-        this.board.movePieces([-1,0])
+        this.board.movePiecesUp()
         break
       case "S":
-        this.board.movePieces([1,0])
+        this.board.movePiecesDown()
         break
       case "E":
-        this.board.movePieces([0,1])
+        this.board.movePiecesRight()
         break
       case "W":
-        this.board.movePieces([0,-1])
+        this.board.movePiecesLeft()
         break
     }
   };
