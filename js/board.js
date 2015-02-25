@@ -52,8 +52,9 @@
     this.grid[newpiecepos[1]][newpiecepos[0]] = new TFE.Piece();
   };
 
-  Board.prototype.move = function(key_dir) {
-    alert("Arrow key was pressed!")
+  Board.prototype.movePieces = function(direction) {
+    debugger
   };
+
 
 })();

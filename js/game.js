@@ -10,20 +10,18 @@
   Game.prototype.move = function(key_dir) {
     switch (key_dir) {
       case "N":
-        alert("Up Arrow key was pressed!")
+        this.board.movePieces([-1,0])
         break
       case "S":
-        alert("Down Arrow key was pressed")
+        this.board.movePieces([1,0])
         break
       case "E":
-        alert("Right Arrow key was pressed")
+        this.board.movePieces([0,1])
         break
       case "W":
-        alert("Left Arrow key was pressed")
+        this.board.movePieces([0,-1])
         break
     }
-
-
   };
 
 })();
