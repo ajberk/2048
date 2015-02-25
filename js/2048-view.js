@@ -23,6 +23,14 @@
     37: "W"
   };
 
+  View.prototype.render = function () {
+    this.updateGrid(this.game.board.grid);
+  };
+
+  View.prototype.updateGrid = function(grid) {
+    alert("hey")
+  };
+
   View.prototype.handleKeyEvent = function (event) {
     if (View.KEYS[event.keyCode]) {
       this.game.move(View.KEYS[event.keyCode])
@@ -61,7 +69,7 @@
     $square = $('.square[data-pos="'+pos+'"]')
     var $piece = $("<div>");
     $piece.addClass("piece");
-    $piece.append(grid[pos[0]][pos[1]].val)
+    $piece.append(grid[pos[0]][pos[1]].val) //the number for the text
     $square.append($piece);
   }
 })();

@@ -55,6 +55,7 @@
   Board.prototype.movePiecesUp = function() {
     for (var i = 1; i < this.grid.length; i++) {
       for (var j = 0; j < this.grid.length; j++) {
+        debugger
         if (this.grid[i-1][j] === null) {
           this.grid[i-1][j] = this.grid[i][j];
           this.grid[i][j] = null;
@@ -62,7 +63,7 @@
       }
     }
     // this is wrong, we need an instance of the view
-    TFE.View().showPieces(this.grid)
+    // TFE.View().render(this.grid)
   };
 
   Board.prototype.movePiecesDown = function(direction) {
