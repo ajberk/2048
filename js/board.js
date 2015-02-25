@@ -3,9 +3,10 @@
     window.TFE = {};
   }
 
-  var Board = TFE.Board = function() {
+  var Board = TFE.Board = function($el) {
     this.grid = this.makeGrid();
     this.startGame();
+    this.$el = $el;
   };
 
   Board.prototype.makeGrid = function () {
@@ -52,18 +53,34 @@
     this.grid[newpiecepos[1]][newpiecepos[0]] = new TFE.Piece();
   };
 
+  Board.prototype.render = function() {
+
+  };
+
+  Board.prototype.addPieceClass = function(pos) {
+    var $piece = $('.square[data-pos="'+pos+'"]')
+    $piece.append(this.grid[pos[0]][pos[1]].val) //the number for the text
+    $piece.addClass("piece");
+  };
+
+  Board.prototype.removePieceClass = function(pos) {
+    var $piece = $('.square[data-pos="'+pos+'"]')
+    $piece.removeClass("piece");
+    $piece.html("");
+  };
+
   Board.prototype.movePiecesUp = function() {
     for (var i = 1; i < this.grid.length; i++) {
       for (var j = 0; j < this.grid.length; j++) {
-        debugger
-        if (this.grid[i-1][j] === null) {
+        if (this.grid[i-1][j] === null && this.grid[i][j] !== null) {
           this.grid[i-1][j] = this.grid[i][j];
+          this.removePieceClass([i, j]);
+          this.addPieceClass([i-1, j]);
           this.grid[i][j] = null;
         }
       }
     }
-    // this is wrong, we need an instance of the view
-    // TFE.View().render(this.grid)
+
   };
 
   Board.prototype.movePiecesDown = function(direction) {
