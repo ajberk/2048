@@ -67,10 +67,8 @@
 
   View.prototype.showPiece = function(pos, grid) {
     $square = $('.square[data-pos="'+pos+'"]')
-    var $piece = $("<div>");
-    $piece.addClass("piece");
-    $piece.append(grid[pos[0]][pos[1]].val) //the number for the text
-    $square.append($piece);
+    $square.append(grid[pos[0]][pos[1]].val) //the number for the text
+    $square.addClass("piece");
   }
 })();
 

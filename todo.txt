@@ -1,4 +1,2 @@
 -MAKE SURE THAT WINDOW DOES NOT MOVE WHEN ARROW KEYS ARE PRESSED
 -Does having a game and board class seem redundent? What will it do?
-
--should we toggle the class instead of creating a new div and putting the values in it?
