@@ -25,7 +25,7 @@
 
   View.prototype.handleKeyEvent = function (event) {
     if (View.KEYS[event.keyCode]) {
-      this.game.board.move(View.KEYS[event.keyCode])
+      this.game.move(View.KEYS[event.keyCode])
     } else {
       // some other key was pressed; ignore.
     }
