@@ -29,6 +29,26 @@
     }
   }
 
+  Game.prototype.allCombinable = function(){
+    for (var i = 0; i < this.board.grid.length; i++) {
+      for (var j = 0; j < this.board.grid.length; j++) {
+        if (this.board.grid[i][j] !== null) {
+          this.board.grid[i][j].combinable = true;
+        }
+      }
+    }
+  }
+
+  Game.prototype.checkWinner = function() {
+    for (var i = 0; i < this.board.grid.length; i++) {
+      for (var j = 0; j < this.board.grid.length; j++) {
+        if (this.board.grid[i][j] !== null && this.board.grid[i][j].val === 64) {
+          alert("Winner!")
+        }
+      }
+    }
+  }
+
   Game.prototype.move = function(key_dir) {
     var copy = this.gridCopy();
     switch (key_dir) {
@@ -45,7 +65,9 @@
         this.board.movePiecesLeft()
         break
     }
+    this.checkWinner();
     this.addPieceIfMoved(copy);
+    this.allCombinable();
   };
 
 })();

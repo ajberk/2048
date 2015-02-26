@@ -74,7 +74,7 @@
 
   Board.prototype.combinePieceUpDown = function(i, j, dir) {
     // Problem: if have line 2 2 4 8, one move up will be  _ _ _ 16
-    if (this.grid[i+dir][j] !== null && this.grid[i][j] !== null && this.grid[i+dir][j].val === this.grid[i][j].val) {
+    if (this.grid[i+dir][j] !== null && this.grid[i][j] !== null && this.grid[i+dir][j].val === this.grid[i][j].val && this.grid[i][j].combinable && this.grid[i+dir][j].combinable) {
       this.grid[i+dir][j].doubleVal();
       this.addPieceClass([i+dir, j])
       this.removePieceClass([i,j])
@@ -83,7 +83,7 @@
   };
 
   Board.prototype.combinePieceLeftRight = function(i, j, dir) {
-    if (this.grid[i][j+dir] !== null && this.grid[i][j] !== null && this.grid[i][j+dir].val === this.grid[i][j].val) {
+    if (this.grid[i][j+dir] !== null && this.grid[i][j] !== null && this.grid[i][j+dir].val === this.grid[i][j].val && this.grid[i][j].combinable && this.grid[i][j+dir].combinable) {
       this.grid[i][j+dir].doubleVal();
       this.addPieceClass([i, j+dir])
       this.removePieceClass([i,j])
