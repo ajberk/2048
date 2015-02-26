@@ -68,10 +68,17 @@
     $piece.html("");
   };
 
-  Board.prototype.movePiece = function(i, j, dir) {
+  Board.prototype.movePieceUpDown = function(i, j, dir) {
     this.grid[i+dir][j] = this.grid[i][j];
     this.removePieceClass([i, j]);
     this.addPieceClass([i+dir, j]);
+    this.grid[i][j] = null;
+  };
+
+  Board.prototype.movePieceLeftRight = function(i, j, dir) {
+    this.grid[i][j+dir] = this.grid[i][j];
+    this.removePieceClass([i, j]);
+    this.addPieceClass([i, j+dir]);
     this.grid[i][j] = null;
   };
 
@@ -79,18 +86,19 @@
     for (var i = 2; i >= 0; i--) {
       for (var j = 0; j < this.grid.length; j++) {
         if (this.grid[i+1][j] === null && this.grid[i][j] !== null) {
-          this.movePiece(i, j, 1);
+          this.movePieceUpDown(i, j, 1);
           this.movePiecesDown();
         }
       }
     }
+
   };
 
   Board.prototype.movePiecesUp = function() {
     for (var i = 1; i < this.grid.length; i++) {
       for (var j = 0; j < this.grid.length; j++) {
         if (this.grid[i-1][j] === null && this.grid[i][j] !== null) {
-          this.movePiece(i, j, -1);
+          this.movePieceUpDown(i, j, -1);
           this.movePiecesUp();
         }
       }
@@ -100,10 +108,38 @@
 
 
   Board.prototype.movePiecesRight = function(direction) {
+    for (var i = 0; i < this.grid.length; i++) {
+      for (var j = 3; j >= 0; j--) {
+        if (this.grid[i][j+1] === null && this.grid[i][j] !== null) {
+          this.movePieceLeftRight(i, j, 1);
+          this.movePiecesRight();
+        }
+      }
+    }
   };
 
   Board.prototype.movePiecesLeft = function(direction) {
+    for (var i = 3; i >= 0; i--) {
+      for (var j = 3; j >= 0; j--) {
+        if (this.grid[i][j-1] === null && this.grid[i][j] !== null) {
+          this.movePieceLeftRight(i, j, -1);
+          this.movePiecesLeft();
+        }
+      }
+    }
+
   };
+
+  // Board.prototype.transpose = function() {
+  //   var transposed = [];
+  //   for (var i = 0; i < this.grid.length; i++) {
+  //     transposed.push([])
+  //     for (var j = 0; j < this.grid.length; j++) {
+  //       transposed[i][j] = this.grid[j][i]
+  //     }
+  //   }
+  //   return transposed
+  // };
 
 
 

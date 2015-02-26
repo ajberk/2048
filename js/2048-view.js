@@ -27,10 +27,6 @@
     this.updateGrid(this.game.board.grid);
   };
 
-  View.prototype.updateGrid = function(grid) {
-    alert("hey")
-  };
-
   View.prototype.handleKeyEvent = function (event) {
     if (View.KEYS[event.keyCode]) {
       this.game.move(View.KEYS[event.keyCode])
