@@ -80,6 +80,7 @@
       for (var j = 0; j < this.grid.length; j++) {
         if (this.grid[i+1][j] === null && this.grid[i][j] !== null) {
           this.movePiece(i, j, 1);
+          this.movePiecesDown();
         }
       }
     }
@@ -90,17 +91,21 @@
       for (var j = 0; j < this.grid.length; j++) {
         if (this.grid[i-1][j] === null && this.grid[i][j] !== null) {
           this.movePiece(i, j, -1);
+          this.movePiecesUp();
         }
       }
     }
 
   };
 
+
   Board.prototype.movePiecesRight = function(direction) {
   };
 
   Board.prototype.movePiecesLeft = function(direction) {
   };
+
+
 
 
 })();
