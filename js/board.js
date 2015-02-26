@@ -69,14 +69,28 @@
     $piece.html("");
   };
 
+  Board.prototype.movePiece = function(i, j, dir) {
+    this.grid[i+dir][j] = this.grid[i][j];
+    this.removePieceClass([i, j]);
+    this.addPieceClass([i+dir, j]);
+    this.grid[i][j] = null;
+  };
+
+  Board.prototype.movePiecesDown = function() {
+    for (var i = 2; i >= 0; i--) {
+      for (var j = 0; j < this.grid.length; j++) {
+        if (this.grid[i+1][j] === null && this.grid[i][j] !== null) {
+          this.movePiece(i, j, 1);
+        }
+      }
+    }
+  };
+
   Board.prototype.movePiecesUp = function() {
     for (var i = 1; i < this.grid.length; i++) {
       for (var j = 0; j < this.grid.length; j++) {
         if (this.grid[i-1][j] === null && this.grid[i][j] !== null) {
-          this.grid[i-1][j] = this.grid[i][j];
-          this.removePieceClass([i, j]);
-          this.addPieceClass([i-1, j]);
-          this.grid[i][j] = null;
+          this.movePiece(i, j, -1);
         }
       }
     }
