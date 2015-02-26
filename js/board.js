@@ -49,7 +49,8 @@
 
   Board.prototype.newPiece = function() {
     var newpiecepos = this.randEmptyPos();
-    this.grid[newpiecepos[1]][newpiecepos[0]] = new TFE.Piece();
+    this.grid[newpiecepos[0]][newpiecepos[1]] = new TFE.Piece();
+    this.addPieceClass(newpiecepos);
   };
 
   Board.prototype.render = function() {
@@ -58,7 +59,7 @@
 
   Board.prototype.addPieceClass = function(pos) {
     var $piece = $('.square[data-pos="'+pos+'"]')
-    $piece.append(this.grid[pos[0]][pos[1]].val) //the number for the text
+    $piece.html(this.grid[pos[0]][pos[1]].val) //the number for the text
     $piece.addClass("piece");
   };
 
@@ -70,15 +71,15 @@
 
   Board.prototype.movePieceUpDown = function(i, j, dir) {
     this.grid[i+dir][j] = this.grid[i][j];
-    this.removePieceClass([i, j]);
     this.addPieceClass([i+dir, j]);
+    this.removePieceClass([i, j]);
     this.grid[i][j] = null;
   };
 
   Board.prototype.movePieceLeftRight = function(i, j, dir) {
     this.grid[i][j+dir] = this.grid[i][j];
-    this.removePieceClass([i, j]);
     this.addPieceClass([i, j+dir]);
+    this.removePieceClass([i, j]);
     this.grid[i][j] = null;
   };
 
@@ -91,7 +92,6 @@
         }
       }
     }
-
   };
 
   Board.prototype.movePiecesUp = function() {

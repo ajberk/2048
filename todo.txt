@@ -1,2 +1,4 @@
 -MAKE SURE THAT WINDOW DOES NOT MOVE WHEN ARROW KEYS ARE PRESSED
 -Does having a game and board class seem redundent? What will it do?
+-setInterval - for animations
+-previous commit working was 2e83a411cc58fdc634320fc9ab049973b23a942a

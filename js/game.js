@@ -11,17 +11,22 @@
     switch (key_dir) {
       case "N":
         this.board.movePiecesUp()
+        this.board.newPiece()
         break
       case "S":
         this.board.movePiecesDown()
+        this.board.newPiece()
         break
       case "E":
         this.board.movePiecesRight()
+        this.board.newPiece()
         break
       case "W":
         this.board.movePiecesLeft()
+        this.board.newPiece()
         break
     }
+
   };
 
 })();
