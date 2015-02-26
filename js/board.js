@@ -96,9 +96,6 @@
 
   };
 
-  Board.prototype.movePiecesDown = function(direction) {
-  };
-
   Board.prototype.movePiecesRight = function(direction) {
   };
 
