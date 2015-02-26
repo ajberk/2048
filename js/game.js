@@ -7,26 +7,45 @@
     this.board = new TFE.Board();
   };
 
+  Game.prototype.gridCopy = function() {
+    var copy = [];
+    for (var i = 0; i < this.board.grid.length; i++) {
+      copy.push([])
+      for (var j = 0; j < this.board.grid.length; j++) {
+        copy[i][j] = this.board.grid[i][j]
+      }
+    }
+    return copy
+  };
+
+  Game.prototype.addPieceIfMoved = function(copy) {
+    for (var i = 0; i < this.board.grid.length; i++) {
+      for (var j = 0; j < this.board.grid.length; j++) {
+        if (copy[i][j] !== this.board.grid[i][j]) {
+          this.board.newPiece();
+          return;
+        }
+      }
+    }
+  }
+
   Game.prototype.move = function(key_dir) {
+    var copy = this.gridCopy();
     switch (key_dir) {
       case "N":
         this.board.movePiecesUp()
-        this.board.newPiece()
         break
       case "S":
         this.board.movePiecesDown()
-        this.board.newPiece()
         break
       case "E":
         this.board.movePiecesRight()
-        this.board.newPiece()
         break
       case "W":
         this.board.movePiecesLeft()
-        this.board.newPiece()
         break
     }
-
+    this.addPieceIfMoved(copy);
   };
 
 })();
