@@ -48,9 +48,9 @@
   };
 
   Board.prototype.newPiece = function() {
-    var newpiecepos = this.randEmptyPos();
-    this.grid[newpiecepos[0]][newpiecepos[1]] = new TFE.Piece();
-    this.addPieceClass(newpiecepos);
+    var newPiecePos = this.randEmptyPos();
+    this.grid[newPiecePos[1]][newPiecePos[0]] = new TFE.Piece();
+    this.addPieceClass(newPiecePos.reverse());
   };
 
   Board.prototype.render = function() {
