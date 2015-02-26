@@ -53,10 +53,6 @@
     this.addPieceClass(newPiecePos.reverse());
   };
 
-  Board.prototype.render = function() {
-
-  };
-
   Board.prototype.addPieceClass = function(pos) {
     var $piece = $('.square[data-pos="'+pos+'"]')
     $piece.html(this.grid[pos[0]][pos[1]].val) //the number for the text
