@@ -3,9 +3,8 @@
     window.TFE = {};
   }
 
-  var Game = TFE.Game = function($el) {
-    this.$el = $el;
-    this.board = new TFE.Board(this.$el);
+  var Game = TFE.Game = function() {
+    this.board = new TFE.Board();
   };
 
   Game.prototype.move = function(key_dir) {

@@ -3,10 +3,9 @@
     window.TFE = {};
   }
 
-  var Board = TFE.Board = function($el) {
+  var Board = TFE.Board = function() {
     this.grid = this.makeGrid();
     this.startGame();
-    this.$el = $el;
   };
 
   Board.prototype.makeGrid = function () {
