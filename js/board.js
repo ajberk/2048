@@ -72,6 +72,25 @@
     this.grid[i][j] = null;
   };
 
+  Board.prototype.combinePieceUpDown = function(i, j, dir) {
+    // Problem: if have line 2 2 4 8, one move up will be  _ _ _ 16
+    if (this.grid[i+dir][j] !== null && this.grid[i][j] !== null && this.grid[i+dir][j].val === this.grid[i][j].val) {
+      this.grid[i+dir][j].doubleVal();
+      this.addPieceClass([i+dir, j])
+      this.removePieceClass([i,j])
+      this.grid[i][j] = null;
+    }
+  };
+
+  Board.prototype.combinePieceLeftRight = function(i, j, dir) {
+    if (this.grid[i][j+dir] !== null && this.grid[i][j] !== null && this.grid[i][j+dir].val === this.grid[i][j].val) {
+      this.grid[i][j+dir].doubleVal();
+      this.addPieceClass([i, j+dir])
+      this.removePieceClass([i,j])
+      this.grid[i][j] = null;
+    }
+  };
+
   Board.prototype.movePieceLeftRight = function(i, j, dir) {
     this.grid[i][j+dir] = this.grid[i][j];
     this.addPieceClass([i, j+dir]);
@@ -82,6 +101,7 @@
   Board.prototype.movePiecesDown = function() {
     for (var i = 2; i >= 0; i--) {
       for (var j = 0; j < this.grid.length; j++) {
+        this.combinePieceUpDown(i, j, 1)
         if (this.grid[i+1][j] === null && this.grid[i][j] !== null) {
           this.movePieceUpDown(i, j, 1);
           this.movePiecesDown();
@@ -93,34 +113,36 @@
   Board.prototype.movePiecesUp = function() {
     for (var i = 1; i < this.grid.length; i++) {
       for (var j = 0; j < this.grid.length; j++) {
+        this.combinePieceUpDown(i, j, -1)
         if (this.grid[i-1][j] === null && this.grid[i][j] !== null) {
           this.movePieceUpDown(i, j, -1);
           this.movePiecesUp();
         }
       }
     }
-
   };
 
 
   Board.prototype.movePiecesRight = function(direction) {
     for (var i = 0; i < this.grid.length; i++) {
-      for (var j = 3; j >= 0; j--) {
+      for (var j = 2; j >= 0; j--) {
         if (this.grid[i][j+1] === null && this.grid[i][j] !== null) {
           this.movePieceLeftRight(i, j, 1);
           this.movePiecesRight();
         }
+        this.combinePieceLeftRight(i, j, 1)
       }
     }
   };
 
   Board.prototype.movePiecesLeft = function(direction) {
     for (var i = 3; i >= 0; i--) {
-      for (var j = 3; j >= 0; j--) {
+      for (var j = 3; j >= 1; j--) {
         if (this.grid[i][j-1] === null && this.grid[i][j] !== null) {
           this.movePieceLeftRight(i, j, -1);
           this.movePiecesLeft();
         }
+        this.combinePieceLeftRight(i, j, -1)
       }
     }
 
