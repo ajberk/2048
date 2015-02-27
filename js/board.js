@@ -63,21 +63,22 @@
 
   Board.prototype.removePieceClass = function(pos) {
     var $square = $('.square[data-pos="'+pos+'"]')
-    $square.html("");
+    $square.empty();
   };
 
   Board.prototype.movePieceUpDown = function(i, j, dir) {
     this.grid[i+dir][j] = this.grid[i][j];
-    this.addPieceClass([i+dir, j]);
     this.removePieceClass([i, j]);
+    this.addPieceClass([i+dir, j]);
     this.grid[i][j] = null;
   };
 
   Board.prototype.combinePieceUpDown = function(i, j, dir) {
     if (this.grid[i+dir][j] !== null && this.grid[i][j] !== null && this.grid[i+dir][j].val === this.grid[i][j].val && this.grid[i][j].combinable && this.grid[i+dir][j].combinable) {
       this.grid[i+dir][j].doubleVal();
-      this.addPieceClass([i+dir, j])
       this.removePieceClass([i,j])
+      this.removePieceClass([i+dir, j])
+      this.addPieceClass([i+dir, j])
       this.grid[i][j] = null;
     //   var $piece = $('.square[data-pos="'+[i+dir, j]+'"]')
     //   $piece.animate({
@@ -93,8 +94,9 @@
   Board.prototype.combinePieceLeftRight = function(i, j, dir) {
     if (this.grid[i][j+dir] !== null && this.grid[i][j] !== null && this.grid[i][j+dir].val === this.grid[i][j].val && this.grid[i][j].combinable && this.grid[i][j+dir].combinable) {
       this.grid[i][j+dir].doubleVal();
-      this.addPieceClass([i, j+dir])
       this.removePieceClass([i,j])
+      this.removePieceClass([i, j+dir])
+      this.addPieceClass([i, j+dir])
       var $piece = $('.square[data-pos="'+[i, j+dir]+'"]')
       // $piece.animate({
       //   fontSize: "600%"
@@ -108,8 +110,8 @@
 
   Board.prototype.movePieceLeftRight = function(i, j, dir) {
     this.grid[i][j+dir] = this.grid[i][j];
-    this.addPieceClass([i, j+dir]);
     this.removePieceClass([i, j]);
+    this.addPieceClass([i, j+dir]);
     this.grid[i][j] = null;
   };
 
