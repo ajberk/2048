@@ -14,6 +14,9 @@
   View.prototype.bindEvents = function() {
     // click handlers and stuff
     $(window).on("keydown", this.handleKeyEvent.bind(this));
+    // $(".square").click(function() {
+    //   $( ".square" ).animate({ "left": "+=50px" }, "slow" );
+    // })
   };
 
   View.KEYS = {
@@ -62,9 +65,12 @@
   };
 
   View.prototype.showPiece = function(pos, grid) {
-    $square = $('.square[data-pos="'+pos+'"]')
-    $square.html(grid[pos[0]][pos[1]].val) //the number for the text
-    $square.addClass("piece");
+    var $square = $('.square[data-pos="'+pos+'"]')
+    // $square.addClass("piece");
+    var $piece = $("<div>")
+    $piece.html(grid[pos[0]][pos[1]].val) //the number for the text
+    $piece.addClass("piece");
+    $square.append($piece);
   }
 })();
 

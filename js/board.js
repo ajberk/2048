@@ -54,15 +54,16 @@
   };
 
   Board.prototype.addPieceClass = function(pos) {
-    var $piece = $('.square[data-pos="'+pos+'"]')
+    var $square = $('.square[data-pos="'+pos+'"]')
+    var $piece = $("<div>")
     $piece.html(this.grid[pos[0]][pos[1]].val) //the number for the text
     $piece.addClass("piece");
+    $square.append($piece);
   };
 
   Board.prototype.removePieceClass = function(pos) {
-    var $piece = $('.square[data-pos="'+pos+'"]')
-    $piece.removeClass("piece");
-    $piece.html("");
+    var $square = $('.square[data-pos="'+pos+'"]')
+    $square.html("");
   };
 
   Board.prototype.movePieceUpDown = function(i, j, dir) {
@@ -73,12 +74,19 @@
   };
 
   Board.prototype.combinePieceUpDown = function(i, j, dir) {
-    // Problem: if have line 2 2 4 8, one move up will be  _ _ _ 16
     if (this.grid[i+dir][j] !== null && this.grid[i][j] !== null && this.grid[i+dir][j].val === this.grid[i][j].val && this.grid[i][j].combinable && this.grid[i+dir][j].combinable) {
       this.grid[i+dir][j].doubleVal();
       this.addPieceClass([i+dir, j])
       this.removePieceClass([i,j])
       this.grid[i][j] = null;
+    //   var $piece = $('.square[data-pos="'+[i+dir, j]+'"]')
+    //   $piece.animate({
+    //     fontSize: "600%"
+    //   });
+    //   $piece.animate({
+    //     fontSize: "300%"
+    //   });
+    //   this.grid[i][j] = null;
     }
   };
 
@@ -87,6 +95,13 @@
       this.grid[i][j+dir].doubleVal();
       this.addPieceClass([i, j+dir])
       this.removePieceClass([i,j])
+      var $piece = $('.square[data-pos="'+[i, j+dir]+'"]')
+      // $piece.animate({
+      //   fontSize: "600%"
+      //   });
+      //   $piece.animate({
+      //     fontSize: "300%"
+      //   });
       this.grid[i][j] = null;
     }
   };
@@ -122,6 +137,9 @@
     }
   };
 
+  // Board.prototype.pieceSlide = function($piece, dir) {
+  //   $piece.animate({"left": "+=100%"}, "slow");
+  // }
 
   Board.prototype.movePiecesRight = function(direction) {
     for (var i = 0; i < this.grid.length; i++) {
