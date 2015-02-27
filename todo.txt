@@ -1,7 +1,5 @@
--MAKE SURE THAT WINDOW DOES NOT MOVE WHEN ARROW KEYS ARE PRESSED
--Does having a game and board class seem redundent? What will it do?
--setInterval - for animations
--previous commit working was 2e83a411cc58fdc634320fc9ab049973b23a942a
-
-
-THE INFINITE LOOP IS HAPPENING CUZ ITS TRYING TO ADD A PIECE TO A FULL BOARD AND IT DOESNT KNOW WHAT TO DO!!!!!
+-new piece animation
+-sliding animation
+-font
+-restart button and description
+-alert for winning and losing.

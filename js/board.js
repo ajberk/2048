@@ -51,7 +51,32 @@
     var newPiecePos = this.randEmptyPos();
     this.grid[newPiecePos[1]][newPiecePos[0]] = new TFE.Piece();
     this.addPieceClass(newPiecePos.reverse());
+    var $newPiece = this.findPiece(newPiecePos.reverse());
+    // debugger
+    // this.newPieceAnimation($newPiece)
   };
+
+  Board.prototype.newPieceAnimation = function($piece) {
+    $piece.css({
+      backgroundColor: "#308FC2"
+    });
+    $piece.animate({
+      height: "150%",
+      width: "150%",
+      marginLeft: "-=20%",
+      marginTop: "-=20%",
+    },100);
+    $piece.animate({
+      height: "100%",
+      width: "100%",
+      marginLeft: "+=20%",
+      marginTop: "+=20%",
+    }, 100, function() {
+      $piece.css({
+        backgroundColor: "orange",
+      });
+    });
+  }
 
   Board.prototype.findPiece = function(pos) {
     var $square = $('.square[data-pos="'+pos+'"]')
