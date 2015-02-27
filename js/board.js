@@ -53,6 +53,30 @@
     this.addPieceClass(newPiecePos.reverse());
   };
 
+  Board.prototype.findPiece = function(pos) {
+    var $square = $('.square[data-pos="'+pos+'"]')
+    return $square.children();
+  };
+
+  Board.prototype.combinePieceAnimation = function($piece) {
+    $piece.css({
+      backgroundColor: "pink"
+    });
+    $piece.animate({
+      height: "150%",
+      width: "150%",
+    },50);
+    $piece.animate({
+      height: "100%",
+      width: "100%",
+    }, 50, function() {
+      $piece.css({
+        backgroundColor: "orange"
+      });
+    });
+
+  }
+
   Board.prototype.addPieceClass = function(pos) {
     var $square = $('.square[data-pos="'+pos+'"]')
     var $piece = $("<div>")
@@ -66,12 +90,15 @@
     $square.empty();
   };
 
+
   Board.prototype.movePieceUpDown = function(i, j, dir) {
+    // var $piece = this.findPiece([i,j])
     this.grid[i+dir][j] = this.grid[i][j];
     this.removePieceClass([i, j]);
     this.addPieceClass([i+dir, j]);
     this.grid[i][j] = null;
   };
+
 
   Board.prototype.combinePieceUpDown = function(i, j, dir) {
     if (this.grid[i+dir][j] !== null && this.grid[i][j] !== null && this.grid[i+dir][j].val === this.grid[i][j].val && this.grid[i][j].combinable && this.grid[i+dir][j].combinable) {
@@ -80,14 +107,9 @@
       this.removePieceClass([i+dir, j])
       this.addPieceClass([i+dir, j])
       this.grid[i][j] = null;
-    //   var $piece = $('.square[data-pos="'+[i+dir, j]+'"]')
-    //   $piece.animate({
-    //     fontSize: "600%"
-    //   });
-    //   $piece.animate({
-    //     fontSize: "300%"
-    //   });
-    //   this.grid[i][j] = null;
+      var $piece = this.findPiece([i+dir,j])
+      this.combinePieceAnimation($piece)
+      this.grid[i][j] = null;
     }
   };
 
@@ -97,13 +119,8 @@
       this.removePieceClass([i,j])
       this.removePieceClass([i, j+dir])
       this.addPieceClass([i, j+dir])
-      var $piece = $('.square[data-pos="'+[i, j+dir]+'"]')
-      // $piece.animate({
-      //   fontSize: "600%"
-      //   });
-      //   $piece.animate({
-      //     fontSize: "300%"
-      //   });
+      var $piece = this.findPiece([i,j+dir])
+      this.combinePieceAnimation($piece)
       this.grid[i][j] = null;
     }
   };
@@ -167,19 +184,4 @@
     }
 
   };
-
-  // Board.prototype.transpose = function() {
-  //   var transposed = [];
-  //   for (var i = 0; i < this.grid.length; i++) {
-  //     transposed.push([])
-  //     for (var j = 0; j < this.grid.length; j++) {
-  //       transposed[i][j] = this.grid[j][i]
-  //     }
-  //   }
-  //   return transposed
-  // };
-
-
-
-
 })();
