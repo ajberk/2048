@@ -50,22 +50,30 @@
   Board.prototype.newPiece = function() {
     var newPiecePos = this.randEmptyPos();
     this.grid[newPiecePos[1]][newPiecePos[0]] = new TFE.Piece();
-    this.addPieceClass(newPiecePos.reverse());
-    var $newPiece = this.findPiece(newPiecePos.reverse());
-    // debugger
-    // this.newPieceAnimation($newPiece)
+    var $newPiece = this.addPieceClass(newPiecePos.reverse());
+    // setTimeout(function () {
+    //   var $newPiece = this.findPiece(newPiecePos.reverse());
+    //   if ($newPiece.length === 0) {
+    //     debugger;
+    //     console.log($newPiece);
+    //   }
+    //   this.newPieceAnimation($newPiece)
+    // }.bind(this), 500);
+    this.newPieceAnimation($newPiece);
   };
 
   Board.prototype.newPieceAnimation = function($piece) {
     $piece.css({
       backgroundColor: "#308FC2"
     });
+
     $piece.animate({
       height: "150%",
       width: "150%",
       marginLeft: "-=20%",
       marginTop: "-=20%",
     },100);
+
     $piece.animate({
       height: "100%",
       width: "100%",
@@ -79,7 +87,7 @@
   }
 
   Board.prototype.findPiece = function(pos) {
-    var $square = $('.square[data-pos="'+pos+'"]')
+    var $square = $('.square[data-pos="' + pos + '"]')
     return $square.children();
   };
 
@@ -87,12 +95,14 @@
     $piece.css({
       backgroundColor: "#308FC2"
     });
+
     $piece.animate({
       height: "150%",
       width: "150%",
       marginLeft: "-=20%",
       marginTop: "-=20%",
     },100);
+
     $piece.animate({
       height: "100%",
       width: "100%",
@@ -113,6 +123,7 @@
     $piece.html(this.grid[pos[0]][pos[1]].val) //the number for the text
     $piece.addClass("piece");
     $square.append($piece);
+    return $piece;
   };
 
   Board.prototype.removePieceClass = function(pos) {
