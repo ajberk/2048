@@ -60,18 +60,23 @@
 
   Board.prototype.combinePieceAnimation = function($piece) {
     $piece.css({
-      backgroundColor: "pink"
+      backgroundColor: "#308FC2"
     });
     $piece.animate({
       height: "150%",
       width: "150%",
-    },50);
+      marginLeft: "-=20%",
+      marginTop: "-=20%",
+    },100);
     $piece.animate({
       height: "100%",
       width: "100%",
-    }, 50, function() {
+      marginLeft: "+=20%",
+      marginTop: "+=20%",
+    }, 100, function() {
       $piece.css({
-        backgroundColor: "orange"
+        backgroundColor: "#8EB0C4",
+        zIndex: -20000
       });
     });
 

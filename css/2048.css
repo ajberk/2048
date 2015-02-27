@@ -10,7 +10,7 @@ h1 {
   height: 600px;
   z-index: -1000;
   margin: 0 auto;
-  background: cornflowerblue;
+  background: #59859F;
   padding-top: 15px;
   padding-left: 15px;
 }
@@ -24,7 +24,7 @@ h1 {
   height: 135px;
   float: left;
   position: relative;
-  background: cornsilk;
+  background: #CEECFB;
 }
 
 .piece {
@@ -34,9 +34,9 @@ h1 {
   margin-bottom: 15px;
   width: 135px;
   height: 135px;
-  background: orange;
+  background: #8EB0C4;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 45px;
   font-size: 300%;
 }
 
