@@ -1,5 +1,4 @@
--new piece animation
 -sliding animation
 -font
--restart button and description
+-description
 -alert for winning and losing.

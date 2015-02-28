@@ -14,6 +14,7 @@
   View.prototype.bindEvents = function() {
     // click handlers and stuff
     $(window).on("keydown", this.handleKeyEvent.bind(this));
+    $("button").on("click", this.restartGame.bind(this));
     // $(".square").click(function() {
     //   $( ".square" ).animate({ "left": "+=50px" }, "slow" );
     // })
@@ -25,6 +26,10 @@
     40: "S",
     37: "W"
   };
+
+  View.prototype.restartGame = function() {
+    location.reload();
+  }
 
   View.prototype.render = function () {
     this.updateGrid(this.game.board.grid);

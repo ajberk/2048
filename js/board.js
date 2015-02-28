@@ -56,21 +56,22 @@
 
   Board.prototype.newPieceAnimation = function($piece) {
     $piece.css({
-      backgroundColor: "#308FC2",
+      backgroundColor: "#8EB0C4",
+      // "#308FC2",
     });
 
     $piece.animate({
       height: "0%",
       width: "0%",
-      marginLeft: "-=20%",
-      marginTop: "-=20%",
-    },100);
+      marginLeft: "+=50%",
+      marginTop: "+=20%",
+    },0);
 
     $piece.animate({
       height: "100%",
       width: "100%",
-      marginLeft: "+=20%",
-      marginTop: "+=20%",
+      marginLeft: "-=50%",
+      marginTop: "-=20%",
     }, 100, function() {
       $piece.css({
         backgroundColor: "#8EB0C4",
@@ -85,7 +86,8 @@
 
   Board.prototype.combinePieceAnimation = function($piece) {
     $piece.css({
-      backgroundColor: "#308FC2"
+      backgroundColor: "#308FC2",
+      // zIndex: 20000
     });
 
     $piece.animate({
@@ -93,6 +95,7 @@
       width: "150%",
       marginLeft: "-=20%",
       marginTop: "-=20%",
+      z: 20000,
     },100);
 
     $piece.animate({
@@ -100,10 +103,11 @@
       width: "100%",
       marginLeft: "+=20%",
       marginTop: "+=20%",
+      z: 20000,
     }, 100, function() {
       $piece.css({
         backgroundColor: "#8EB0C4",
-        zIndex: -20000
+        // zIndex: 20000
       });
     });
 
@@ -120,7 +124,9 @@
 
   Board.prototype.removePieceClass = function(pos) {
     var $square = $('.square[data-pos="'+pos+'"]')
+    var $piece = $square.children();
     $square.empty();
+    return $piece;
   };
 
 
@@ -158,11 +164,24 @@
     }
   };
 
+  Board.prototype.slideSlide = function(pos, dir) {
+    var $square = $('.square[data-pos="'+pos+'"]')
+    var $piece = $square.children();
+    dir === 1 ? $piece.animate({"left": "+=150px"}, "slow") : $piece.animate({"right": "+=150px"}, "slow")
+    $square.empty();
+  };
+
   Board.prototype.movePieceLeftRight = function(i, j, dir) {
     this.grid[i][j+dir] = this.grid[i][j];
-    this.removePieceClass([i, j]);
-    this.addPieceClass([i, j+dir]);
-    this.grid[i][j] = null;
+    // var $formerPiece = this.removePieceClass([i, j]);
+    var $formerPiece = this.slideSlide([i, j], dir);
+    // var $piece = this.findPiece([i, j]);
+    // this.slideDirectionLeftRight($formerPiece, dir);
+    var $piece = this.addPieceClass([i, j+dir]);
+    // setTimeout(function() {
+      // var $piece = this.addPieceClass([i, j+dir]);
+      this.grid[i][j] = null;
+    // }.bind(this), 500);
   };
 
   Board.prototype.movePiecesDown = function() {
@@ -215,6 +234,23 @@
         this.combinePieceLeftRight(i, j, -1)
       }
     }
+  }
 
-  };
+  Board.prototype.slideDirectionLeftRight = function($piece, dir) {
+    dir === 1 ? $piece.animate({"left": "+=150px"}, "slow") : $piece.animate({"right": "+=150px"}, "slow")
+  }
+
+  Board.prototype.slideDirectionUpDown = function($piece, dir) {
+    dir === -1 ? $piece.animate({"bottom": "+=150px"}, "slow") : $piece.animate({"top": "+=150px"}, "slow")
+  }
+
+  // Board.prototype.slidePieceAnimationLeftRight = function($piece, dir) {
+  //   var direction = this.slideDirectionLeftRight(dir);
+  //   $piece.animate({direction: "+=100px"}, "slow");
+  // }
+  //
+  // Board.prototype.slidePieceAnimationUpDown = function($piece, dir) {
+  //   var direction = this.slideDirectionUpDown(dir);
+  //   $piece.animate({dir: "+=100px"}, "slow");
+  // }
 })();
