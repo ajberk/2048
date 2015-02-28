@@ -124,9 +124,7 @@
 
   Board.prototype.removePieceClass = function(pos) {
     var $square = $('.square[data-pos="'+pos+'"]')
-    var $piece = $square.children();
     $square.empty();
-    return $piece;
   };
 
 
@@ -164,24 +162,12 @@
     }
   };
 
-  Board.prototype.slideSlide = function(pos, dir) {
-    var $square = $('.square[data-pos="'+pos+'"]')
-    var $piece = $square.children();
-    dir === 1 ? $piece.animate({"left": "+=150px"}, "slow") : $piece.animate({"right": "+=150px"}, "slow")
-    $square.empty();
-  };
-
   Board.prototype.movePieceLeftRight = function(i, j, dir) {
     this.grid[i][j+dir] = this.grid[i][j];
-    // var $formerPiece = this.removePieceClass([i, j]);
-    var $formerPiece = this.slideSlide([i, j], dir);
-    // var $piece = this.findPiece([i, j]);
-    // this.slideDirectionLeftRight($formerPiece, dir);
     var $piece = this.addPieceClass([i, j+dir]);
-    // setTimeout(function() {
-      // var $piece = this.addPieceClass([i, j+dir]);
-      this.grid[i][j] = null;
-    // }.bind(this), 500);
+    this.slideDirectionLeftRight($piece, dir);
+    this.removePieceClass([i, j]);
+    this.grid[i][j] = null;
   };
 
   Board.prototype.movePiecesDown = function() {
@@ -238,19 +224,11 @@
 
   Board.prototype.slideDirectionLeftRight = function($piece, dir) {
     dir === 1 ? $piece.animate({"left": "+=150px"}, "slow") : $piece.animate({"right": "+=150px"}, "slow")
+    return direction;
   }
 
   Board.prototype.slideDirectionUpDown = function($piece, dir) {
     dir === -1 ? $piece.animate({"bottom": "+=150px"}, "slow") : $piece.animate({"top": "+=150px"}, "slow")
+    return direction;
   }
-
-  // Board.prototype.slidePieceAnimationLeftRight = function($piece, dir) {
-  //   var direction = this.slideDirectionLeftRight(dir);
-  //   $piece.animate({direction: "+=100px"}, "slow");
-  // }
-  //
-  // Board.prototype.slidePieceAnimationUpDown = function($piece, dir) {
-  //   var direction = this.slideDirectionUpDown(dir);
-  //   $piece.animate({dir: "+=100px"}, "slow");
-  // }
 })();
