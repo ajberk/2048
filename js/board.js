@@ -51,25 +51,17 @@
     var newPiecePos = this.randEmptyPos();
     this.grid[newPiecePos[1]][newPiecePos[0]] = new TFE.Piece();
     var $newPiece = this.addPieceClass(newPiecePos.reverse());
-    // setTimeout(function () {
-    //   var $newPiece = this.findPiece(newPiecePos.reverse());
-    //   if ($newPiece.length === 0) {
-    //     debugger;
-    //     console.log($newPiece);
-    //   }
-    //   this.newPieceAnimation($newPiece)
-    // }.bind(this), 500);
     this.newPieceAnimation($newPiece);
   };
 
   Board.prototype.newPieceAnimation = function($piece) {
     $piece.css({
-      backgroundColor: "#308FC2"
+      backgroundColor: "#308FC2",
     });
 
     $piece.animate({
-      height: "150%",
-      width: "150%",
+      height: "0%",
+      width: "0%",
       marginLeft: "-=20%",
       marginTop: "-=20%",
     },100);
@@ -81,7 +73,7 @@
       marginTop: "+=20%",
     }, 100, function() {
       $piece.css({
-        backgroundColor: "orange",
+        backgroundColor: "#8EB0C4",
       });
     });
   }
