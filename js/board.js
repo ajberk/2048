@@ -165,7 +165,28 @@
   Board.prototype.movePieceLeftRight = function(i, j, dir) {
     this.grid[i][j+dir] = this.grid[i][j];
     var $piece = this.addPieceClass([i, j+dir]);
-    // this.slideDirectionLeftRight($piece, dir);
+    var that = this;
+
+
+    // var requestAnimationVar =  window.requestAnimationFrame(function() {
+    //   if (dir === 1) {
+    //     $piece.animate({
+    //       "left": "+=150px"
+    //     }, "slow", function() {
+    //       that.removePieceClass([i, j]);
+    //       that.addPieceClass([i, j+dir]);
+    //       window.cancelAnimationFrame(requestAnimationVar)
+    //     })
+    //   } else {
+    //     $piece.animate({
+    //       "right": "+=150px"
+    //     }, "slow", function() {
+    //       that.addPieceClass([i, j+dir]);
+    //       window.cancelAnimationFrame(requestAnimationVar)
+    //     })
+    //   }
+    // });
+
     this.removePieceClass([i, j]);
     this.grid[i][j] = null;
   };
