@@ -12,12 +12,14 @@
   };
 
   View.prototype.bindEvents = function() {
-    // click handlers and stuff
     $(window).on("keydown", this.handleKeyEvent.bind(this));
     $("button").on("click", this.restartGame.bind(this));
-    // $(".square").click(function() {
-    //   $( ".square" ).animate({ "left": "+=50px" }, "slow" );
-    // })
+    window.addEventListener("keydown", function(e) {
+      // space and arrow keys
+      if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+      }
+    }, false);
   };
 
   View.KEYS = {
