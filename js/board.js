@@ -165,7 +165,7 @@
   Board.prototype.movePieceLeftRight = function(i, j, dir) {
     this.grid[i][j+dir] = this.grid[i][j];
     var $piece = this.addPieceClass([i, j+dir]);
-    this.slideDirectionLeftRight($piece, dir);
+    // this.slideDirectionLeftRight($piece, dir);
     this.removePieceClass([i, j]);
     this.grid[i][j] = null;
   };
