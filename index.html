@@ -1,52 +1,35 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <meta charset="utf-8">
+  <title>2048</title>
+  <link rel="stylesheet" type="text/css" href="../css/2048.css">
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+</head>
 
-  <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="2048 : A clone of the game 2048">
+<body>
+  <h1>2048</h1>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <div class="tfe"></div>
 
-    <title>2048</title>
-  </head>
+  <button class = "button">Restart Game!</button>
 
-  <body>
+  <div class="description">INSTRUCTIONS: Move the tiles using up, down, right, and left arrow keys. When two tiles with the same numbers collide, they merge into one, doubling the value. Get one square to have a value of 2048 to win! </div>
+  <div class="footer">Built by <a href="https://github.com/ajberk"> Adam Berkovec</a> and <a href="https://github.com/sjjlynch">Stefanie Lynch</a>.</div>
+  <div class="credits">CLONE OF: 2048, by Gabriele Cirulli.</div>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/ajberk/2048">View on GitHub</a>
 
-          <h1 id="project_title">2048</h1>
-          <h2 id="project_tagline">A clone of the game 2048</h2>
+  <script src="./js/jquery-2.1.1.js"></script>
+  <script src="./js/2048-view.js"></script>
+  <script src="./js/board.js"></script>
+  <script src="./js/game.js"></script>
+  <script src="./js/piece.js"></script>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/ajberk/2048/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/ajberk/2048/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a id="2048" class="anchor" href="#2048" aria-hidden="true"><span class="octicon octicon-link"></span></a>2048</h1>
-
-<p>A clone of the game 2048  (<a href="https://github.com/gabrielecirulli/2048">https://github.com/gabrielecirulli/2048</a>)</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">2048 maintained by <a href="https://github.com/ajberk">ajberk</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+  <script>
+  $(function () {
+    new TFE.View(new TFE.Game(), $(".tfe"));
+  });
+  </script>
+</body>
 </html>
