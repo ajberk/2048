@@ -57,7 +57,6 @@
   Board.prototype.newPieceAnimation = function($piece) {
     $piece.css({
       backgroundColor: "#8EB0C4",
-      // "#308FC2",
     });
 
     $piece.animate({
@@ -165,28 +164,6 @@
   Board.prototype.movePieceLeftRight = function(i, j, dir) {
     this.grid[i][j+dir] = this.grid[i][j];
     var $piece = this.addPieceClass([i, j+dir]);
-    var that = this;
-
-
-    // var requestAnimationVar =  window.requestAnimationFrame(function() {
-    //   if (dir === 1) {
-    //     $piece.animate({
-    //       "left": "+=150px"
-    //     }, "slow", function() {
-    //       that.removePieceClass([i, j]);
-    //       that.addPieceClass([i, j+dir]);
-    //       window.cancelAnimationFrame(requestAnimationVar)
-    //     })
-    //   } else {
-    //     $piece.animate({
-    //       "right": "+=150px"
-    //     }, "slow", function() {
-    //       that.addPieceClass([i, j+dir]);
-    //       window.cancelAnimationFrame(requestAnimationVar)
-    //     })
-    //   }
-    // });
-
     this.removePieceClass([i, j]);
     this.grid[i][j] = null;
   };
@@ -215,10 +192,6 @@
     }
   };
 
-  // Board.prototype.pieceSlide = function($piece, dir) {
-  //   $piece.animate({"left": "+=100%"}, "slow");
-  // }
-
   Board.prototype.movePiecesRight = function(direction) {
     for (var i = 0; i < this.grid.length; i++) {
       for (var j = 2; j >= 0; j--) {
@@ -241,15 +214,5 @@
         this.combinePieceLeftRight(i, j, -1)
       }
     }
-  }
-
-  Board.prototype.slideDirectionLeftRight = function($piece, dir) {
-    dir === 1 ? $piece.animate({"left": "+=150px"}, "slow") : $piece.animate({"right": "+=150px"}, "slow")
-    return direction;
-  }
-
-  Board.prototype.slideDirectionUpDown = function($piece, dir) {
-    dir === -1 ? $piece.animate({"bottom": "+=150px"}, "slow") : $piece.animate({"top": "+=150px"}, "slow")
-    return direction;
   }
 })();
